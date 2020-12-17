@@ -71,12 +71,10 @@ bzrlib/_*.so
 bzrlib/_*.pyd
 ./.ccache
 .testrepository
-
-
-.git/
+.bzr/
 .sass-cache/
 bzr-repo/
-*.pyc
+
 
 build/
 .idea/
