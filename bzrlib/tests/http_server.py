@@ -477,6 +477,7 @@ class HttpServer(test_server.TestingTCPServerInAThread):
         self.logs = []
 
         super(HttpServer, self).start_server()
+        self.host = 'localhost'
         self._http_base_url = '%s://%s:%s/' % (
             self._url_protocol, self.host, self.port)
 
