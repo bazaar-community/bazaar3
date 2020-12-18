@@ -124,6 +124,7 @@ def load_tests(basic_tests, module, loader):
                      'test_switch',
                      'test_tags',
                      'test_testament',
+                     'test_too_much',
                      'test_uncommit',
                      'test_unknowns',
                      'test_update',
