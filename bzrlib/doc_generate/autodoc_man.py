@@ -26,13 +26,13 @@ from __future__ import absolute_import
 PLUGINS_TO_DOCUMENT = ["launchpad"]
 
 import textwrap
-import time
 
 import bzrlib
 import bzrlib.help
 import bzrlib.help_topics
 import bzrlib.commands
 import bzrlib.osutils
+from bzrlib.doc_generate import get_autodoc_datetime
 
 from bzrlib.plugin import load_plugins
 load_plugins()
@@ -45,11 +45,11 @@ def get_filename(options):
 
 def infogen(options, outfile):
     """Assembles a man page"""
-    tt = bzrlib.osutils.gmtime()
+    d = get_autodoc_datetime()
     params = \
            { "bzrcmd": options.bzr_name,
-             "datestamp": time.strftime("%Y-%m-%d",tt),
-             "timestamp": time.strftime("%Y-%m-%d %H:%M:%S +0000",tt),
+             "datestamp": d.strftime("%Y-%m-%d"),
+             "timestamp": d.strftime("%Y-%m-%d %H:%M:%S +0000"),
              "version": bzrlib.__version__,
              }
     outfile.write(man_preamble % params)
