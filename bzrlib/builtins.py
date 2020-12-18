@@ -4136,7 +4136,11 @@ class cmd_selftest(Command):
         # backtraces.
         lazy_import.disallow_proxying()
 
-        from bzrlib import tests
+        try:
+            from bzrlib import tests
+        except ImportError:
+            raise errors.BzrCommandError("tests not available. Install the "
+                "python-bzrlib.tests package to run the bzr testsuite.")
 
         if testspecs_list is not None:
             pattern = '|'.join(testspecs_list)

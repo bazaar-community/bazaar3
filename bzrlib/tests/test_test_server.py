@@ -74,7 +74,12 @@ class TCPClient(object):
         return self.sock.sendall(s)
 
     def read(self, bufsize=4096):
-        return self.sock.recv(bufsize)
+        try:
+            return self.sock.recv(bufsize)
+        except socket.error, e:
+            if e.errno == errno.ECONNRESET:
+                return ""
+            raise
 
 
 class TCPConnectionHandler(SocketServer.BaseRequestHandler):
@@ -197,6 +202,8 @@ class TestTCPServerInAThread(tests.TestCase):
                 pass
         # Now the server has raised the exception in its own thread
         self.assertRaises(CantConnect, server.stop_server)
+
+
 
     def test_server_crash_while_responding(self):
         # We want to ensure the exception has been caught
