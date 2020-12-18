@@ -48,7 +48,7 @@ from bzrlib.tests import (
     scenarios,
     test_server,
     )
-from bzrlib.util.configobj import configobj
+import configobj
 
 
 def lockable_config_scenarios():
