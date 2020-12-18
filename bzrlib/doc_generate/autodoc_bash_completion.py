@@ -18,12 +18,11 @@
 
 from __future__ import absolute_import
 
-import time
-
 import bzrlib
 import bzrlib.help
 import bzrlib.commands
 import bzrlib.osutils
+from bzrlib.doc_generate import get_autodoc_datetime
 
 
 def get_filename(options):
@@ -31,11 +30,11 @@ def get_filename(options):
 
 
 def infogen(options, outfile):
-    tt = bzrlib.osutils.gmtime()
+    d = get_autodoc_datetime()
     params = \
            { "bzrcmd": options.bzr_name,
-             "datestamp": time.strftime("%Y-%m-%d",tt),
-             "timestamp": time.strftime("%Y-%m-%d %H:%M:%S +0000",tt),
+             "datestamp": d.strftime("%Y-%m-%d"),
+             "timestamp": d.strftime("%Y-%m-%d %H:%M:%S +0000"),
              "version": bzrlib.__version__,
              }
 
