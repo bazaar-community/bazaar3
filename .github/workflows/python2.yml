@@ -39,5 +39,6 @@ jobs:
         make docs
 
     - name: Run Tests
+      run: | 
         make check
 
