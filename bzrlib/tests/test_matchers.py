@@ -133,7 +133,7 @@ class TestHasLayout(TestCaseWithTransport):
         mismatch = HasLayout(['a']).match(t)
         self.assertIsNot(None, mismatch)
         self.assertEqual(
-            "['a'] != [u'', u'a', u'b/', u'b/c']",
+            "[u'', u'a', u'b/', u'b/c'] != ['a']",
             mismatch.describe())
 
     def test_no_dirs(self):
@@ -147,7 +147,7 @@ class TestHasLayout(TestCaseWithTransport):
         mismatch = HasLayout([u'', u'a', u'd/']).match(t)
         self.assertIsNot(None, mismatch)
         self.assertEqual(
-            "[u'', u'a'] != [u'', u'a', u'b/', u'b/c']",
+            "[u'', u'a', u'b/', u'b/c'] != [u'', u'a']",
             mismatch.describe())
 
 
@@ -200,5 +200,5 @@ class TestRevisionHistoryMatches(TestCaseWithTransport):
         tree.commit('msg2', rev_id='b')
         matcher = RevisionHistoryMatches(['a', 'b', 'c'])
         self.assertEqual(
-            "['a', 'b', 'c'] != ['a', 'b']",
+            "['a', 'b'] != ['a', 'b', 'c']",
             matcher.match(tree.branch).describe())

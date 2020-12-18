@@ -474,3 +474,7 @@ check-dist-tarball:
 	tar Cxz $$tmpdir -f $$tarball && \
 	$(MAKE) -C $$tmpdir/bzr-$$version check && \
 	rm -rf $$tmpdir
+
+tests:
+	$(PYTHON) ./bzr selftest -v --parallel=fork --no-plugins -x ./bzrlib.tests.test_http.TestBadStatusServer.test_http_get -x  ./bzrlib.tests.test_http.TestBadStatusServer.test_http_has
+
